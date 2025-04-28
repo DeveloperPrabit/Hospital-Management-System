@@ -1,0 +1,53 @@
+.dashboard{
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.sidebar{
+    width: 200px;
+    background-color: aqua;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar h2{
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 15px 0;
+    padding: 0;
+}
+
+
+.main-content{
+    flex: 1;
+    padding: 20px;
+    background-color: red;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0,1);
+    border-radius: 8px;
+}
