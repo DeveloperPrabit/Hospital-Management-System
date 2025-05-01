@@ -1,17 +1,18 @@
-.dashboard{
+.dashboard {
     display: flex;
     min-height: 100vh;
     font-family: 'Times New Roman', Times, serif;
 }
 
-.sidebar{
+/* Sidebar */
+.sidebar {
     width: 200px;
     background-color: aqua;
     color: white;
     padding: 20px;
 }
 
-.sidebar h2{
+.sidebar h2 {
     margin-bottom: 20px;
 }
 
@@ -22,22 +23,82 @@
 
 .sidebar li {
     margin: 15px 0;
-    padding: 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
+.sidebar li:hover {
+    background-color: #00cccc;
+    padding-left: 10px;
+}
 
-.main-content{
+/* Main Content */
+.main-content {
     flex: 1;
     padding: 20px;
-    background-color: red;
+    background-color: #f8f9fa;
 }
 
 .topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
 }
 
+.topbar h1 {
+    margin: 0;
+}
+
+.user-info {
+    font-size: 1.5rem;
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+button[type="submit"] {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Lists */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Cards Section (future use) */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -48,6 +109,6 @@
 .card {
     background-color: white;
     padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0,1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
