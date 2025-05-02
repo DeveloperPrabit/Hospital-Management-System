@@ -16,37 +16,34 @@ const Main = () => {
   const [appointments, setAppointments] = useState([]);
   const [newAppointment, setNewAppointment] = useState({ patient: '', doctor: '', time: '' });
 
-  // Load from LocalStorage on first load
+  // Fetch doctors from backend on initial load
   useEffect(() => {
-    const storedDoctors = JSON.parse(localStorage.getItem('doctors')) || [];
-    const storedPatients = JSON.parse(localStorage.getItem('patients')) || [];
-    const storedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
-
-    setDoctors(storedDoctors);
-    setPatients(storedPatients);
-    setAppointments(storedAppointments);
+    fetch('http://localhost:5000/api/doctors')
+      .then(res => res.json())
+      .then(data => setDoctors(data))
+      .catch(err => console.error('Error fetching doctors:', err));
   }, []);
 
-  // Save to LocalStorage when data changes
-  useEffect(() => {
-    localStorage.setItem('doctors', JSON.stringify(doctors));
-  }, [doctors]);
-
-  useEffect(() => {
-    localStorage.setItem('patients', JSON.stringify(patients));
-  }, [patients]);
-
-  useEffect(() => {
-    localStorage.setItem('appointments', JSON.stringify(appointments));
-  }, [appointments]);
-
-  // Handlers
+  // Add new doctor to backend and update state
   const handleAddDoctor = (e) => {
     e.preventDefault();
-    setDoctors([...doctors, newDoctor]);
-    setNewDoctor({ name: '', specialization: '' });
+
+    fetch('http://localhost:5000/api/doctors', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newDoctor),
+    })
+      .then(res => res.json())
+      .then(addedDoctor => {
+        setDoctors([...doctors, addedDoctor]);
+        setNewDoctor({ name: '', specialization: '' });
+      })
+      .catch(err => console.error('Error adding doctor:', err));
   };
 
+  // Patient and Appointment logic (local state only for now)
   const handleAddPatient = (e) => {
     e.preventDefault();
     setPatients([...patients, newPatient]);
@@ -59,6 +56,7 @@ const Main = () => {
     setNewAppointment({ patient: '', doctor: '', time: '' });
   };
 
+  // UI Rendering
   const renderContent = () => {
     switch (activeTab) {
       case 'Home':
@@ -68,7 +66,6 @@ const Main = () => {
         return (
           <div>
             <h2>Doctors</h2>
-
             <form onSubmit={handleAddDoctor} style={{ marginBottom: '1rem' }}>
               <input
                 type="text"
@@ -86,7 +83,6 @@ const Main = () => {
               />
               <button type="submit">Add Doctor</button>
             </form>
-
             <ul>
               {doctors.map((doc, index) => (
                 <li key={index}>
@@ -101,7 +97,6 @@ const Main = () => {
         return (
           <div>
             <h2>Patients</h2>
-
             <form onSubmit={handleAddPatient} style={{ marginBottom: '1rem' }}>
               <input
                 type="text"
@@ -119,7 +114,6 @@ const Main = () => {
               />
               <button type="submit">Add Patient</button>
             </form>
-
             <ul>
               {patients.map((pat, index) => (
                 <li key={index}>
@@ -134,7 +128,6 @@ const Main = () => {
         return (
           <div>
             <h2>Appointments</h2>
-
             <form onSubmit={handleAddAppointment} style={{ marginBottom: '1rem' }}>
               <input
                 type="text"
@@ -158,7 +151,6 @@ const Main = () => {
               />
               <button type="submit">Schedule</button>
             </form>
-
             <ul>
               {appointments.map((app, index) => (
                 <li key={index}>

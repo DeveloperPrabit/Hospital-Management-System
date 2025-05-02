@@ -1,11 +1,17 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "This is backend for Banking System on mern-stack training",
+  "description": "This is backend for Hospital Management System on mern-stack training",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node backend/server.js",
+    "client": "cd frontend && npm start"
   },
   "author": "prabit",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
 }

@@ -8,8 +8,10 @@
 .sidebar {
     width: 200px;
     background-color: aqua;
-    color: white;
+    color: rgb(202, 27, 27);
     padding: 20px;
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 
 .sidebar h2 {
@@ -107,7 +109,7 @@ li {
 }
 
 .card {
-    background-color: white;
+    background-color: rgb(204, 20, 20);
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
